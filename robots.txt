@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+Sitemap: https:/formation-hb.drakolab.fr//sitemap.xml
+Host: https://formation-hb.drakolab.fr

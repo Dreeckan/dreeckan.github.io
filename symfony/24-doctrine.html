@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Doctrine et la BdD</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="Les formations de Rémi Jarjat pour Human Booster">
+    
+    <link rel="preload" href="/assets/css/0.styles.f78ef515.css" as="style"><link rel="preload" href="/assets/js/app.a0283a3d.js" as="script"><link rel="preload" href="/assets/js/2.2bb1f65b.js" as="script"><link rel="preload" href="/assets/js/48.867e58b9.js" as="script"><link rel="prefetch" href="/assets/js/10.a27b6e9d.js"><link rel="prefetch" href="/assets/js/11.2193e9e3.js"><link rel="prefetch" href="/assets/js/12.f39a5b44.js"><link rel="prefetch" href="/assets/js/13.2d6a44aa.js"><link rel="prefetch" href="/assets/js/14.0673e9ad.js"><link rel="prefetch" href="/assets/js/15.a5eeeada.js"><link rel="prefetch" href="/assets/js/16.33dfc880.js"><link rel="prefetch" href="/assets/js/17.c79025e1.js"><link rel="prefetch" href="/assets/js/18.959ecd03.js"><link rel="prefetch" href="/assets/js/19.9b33ed18.js"><link rel="prefetch" href="/assets/js/20.ef228a5b.js"><link rel="prefetch" href="/assets/js/21.95b935c1.js"><link rel="prefetch" href="/assets/js/22.6089ec44.js"><link rel="prefetch" href="/assets/js/23.1786dcbd.js"><link rel="prefetch" href="/assets/js/24.1cc8c701.js"><link rel="prefetch" href="/assets/js/25.bfc350ad.js"><link rel="prefetch" href="/assets/js/26.bc869606.js"><link rel="prefetch" href="/assets/js/27.2974731f.js"><link rel="prefetch" href="/assets/js/28.c59ffda1.js"><link rel="prefetch" href="/assets/js/29.a4f4f78c.js"><link rel="prefetch" href="/assets/js/3.b306ebdc.js"><link rel="prefetch" href="/assets/js/30.f86e1c24.js"><link rel="prefetch" href="/assets/js/31.3a368f51.js"><link rel="prefetch" href="/assets/js/32.ae32716d.js"><link rel="prefetch" href="/assets/js/33.04577fe2.js"><link rel="prefetch" href="/assets/js/34.0036621d.js"><link rel="prefetch" href="/assets/js/35.ae9cca52.js"><link rel="prefetch" href="/assets/js/36.46328e65.js"><link rel="prefetch" href="/assets/js/37.b265ca29.js"><link rel="prefetch" href="/assets/js/38.30e09b09.js"><link rel="prefetch" href="/assets/js/39.b34ea9f8.js"><link rel="prefetch" href="/assets/js/4.1b3f0ff6.js"><link rel="prefetch" href="/assets/js/40.6ee002ae.js"><link rel="prefetch" href="/assets/js/41.fc420cf4.js"><link rel="prefetch" href="/assets/js/42.209ec249.js"><link rel="prefetch" href="/assets/js/43.2d7d1cd7.js"><link rel="prefetch" href="/assets/js/44.b9fd8430.js"><link rel="prefetch" href="/assets/js/45.15ab68bd.js"><link rel="prefetch" href="/assets/js/46.01b8ec0e.js"><link rel="prefetch" href="/assets/js/47.112cd2f4.js"><link rel="prefetch" href="/assets/js/49.3ac37d3e.js"><link rel="prefetch" href="/assets/js/5.784f0707.js"><link rel="prefetch" href="/assets/js/50.f9dae8e2.js"><link rel="prefetch" href="/assets/js/51.43768ca2.js"><link rel="prefetch" href="/assets/js/52.dde625a3.js"><link rel="prefetch" href="/assets/js/53.72d8e143.js"><link rel="prefetch" href="/assets/js/54.bc802a1c.js"><link rel="prefetch" href="/assets/js/55.e1f55ab2.js"><link rel="prefetch" href="/assets/js/56.1118b442.js"><link rel="prefetch" href="/assets/js/57.c6e74a85.js"><link rel="prefetch" href="/assets/js/58.cfab71d0.js"><link rel="prefetch" href="/assets/js/59.6fb84388.js"><link rel="prefetch" href="/assets/js/6.a94e70e9.js"><link rel="prefetch" href="/assets/js/60.f130f013.js"><link rel="prefetch" href="/assets/js/61.99515c03.js"><link rel="prefetch" href="/assets/js/62.d3e48f49.js"><link rel="prefetch" href="/assets/js/7.8a7612b0.js"><link rel="prefetch" href="/assets/js/8.82725242.js"><link rel="prefetch" href="/assets/js/9.8e900de4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f78ef515.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/assets/LogoHB.png" alt="" class="logo"> <!----></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/" aria-current="page" class="sidebar-link">Liste des cours</a></li><li><a href="/general/" class="sidebar-link">Culture numérique</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/git/" class="sidebar-heading clickable"><span>Git</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/linux/" class="sidebar-link">Linux</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/php/" class="sidebar-heading clickable"><span>PHP</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/symfony/" class="sidebar-heading clickable router-link-active open"><span>Symfony</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/symfony/01-installation.html" class="sidebar-link">Installer Symfony et son environnement de travail</a></li><li><a href="/symfony/10-structure.html" class="sidebar-link">Structure et utilisation d'un projet</a></li><li><a href="/symfony/20-routing.html" class="sidebar-link">Le routing</a></li><li><a href="/symfony/21-controllers.html" class="sidebar-link">Les controllers</a></li><li><a href="/symfony/22-twig.html" class="sidebar-link">Twig</a></li><li><a href="/symfony/23-injection.html" class="sidebar-link">Les services et l'injection de dépendances</a></li><li><a href="/symfony/24-doctrine.html" aria-current="page" class="active sidebar-link">Doctrine et la BdD</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#pour-resumer" class="sidebar-link">Pour résumer</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#configurer-la-bdd" class="sidebar-link">Configurer la BdD</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#debug-pour-mac-et-mamp" class="sidebar-link">Débug pour Mac et Mamp</a></li></ul></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#configurer-doctrine" class="sidebar-link">Configurer Doctrine</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#creer-des-entites" class="sidebar-link">Créer des entités</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#les-migrations" class="sidebar-link">Les migrations</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#annuler-une-migration" class="sidebar-link">Annuler une migration</a></li></ul></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#l-entitymanager-pour-sauvegarder" class="sidebar-link">L'EntityManager pour sauvegarder</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#le-paramconverter-de-doctrine" class="sidebar-link">Le ParamConverter de Doctrine</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#le-repository-pour-recuperer-des-entites" class="sidebar-link">Le Repository pour récupérer des entités</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#le-querybuilder-construire-ses-propres-requetes" class="sidebar-link">Le QueryBuilder : construire ses propres requêtes</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#les-jointures" class="sidebar-link">Les jointures</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#les-differentes-methodes-du-querybuilder" class="sidebar-link">Les différentes méthodes du QueryBuilder</a></li></ul></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#tester-nos-requetes" class="sidebar-link">Tester nos requêtes</a></li><li class="sidebar-sub-header"><a href="/symfony/24-doctrine.html#creer-de-fausses-donnees-fixtures" class="sidebar-link">Créer de fausses données (fixtures)</a></li></ul></li><li><a href="/symfony/25-formulaires.html" class="sidebar-link">Formulaires</a></li><li><a href="/symfony/26-translation.html" class="sidebar-link">Les traductions</a></li><li><a href="/symfony/27-event-listeners.html" class="sidebar-link">Event listeners/subscribers</a></li><li><a href="/symfony/30-user.html" class="sidebar-link">Connexion et sécurisation</a></li><li><a href="/symfony/40-bundles.html" class="sidebar-link">Bundles</a></li><li><a href="/symfony/41-easy-admin.html" class="sidebar-link">Easy Admin Bundle</a></li><li><a href="/symfony/42-api-platform.html" class="sidebar-link">Api Platform</a></li><li><a href="/symfony/80-cheat-sheet.html" class="sidebar-link">Pense-bêtes</a></li><li><a href="/symfony/81-quotidien.html" class="sidebar-link">Symfony au quotidien</a></li><li><a href="/symfony/82-docker.html" class="sidebar-link">Travailler avec Docker</a></li><li><a href="/symfony/90-doggies.html" class="sidebar-link">Projet : annonces de SPA / éleveurs</a></li><li><a href="/symfony/91-vote.html" class="sidebar-link">Projet : vote citoyen</a></li><li><a href="/symfony/99-exercices.html" class="sidebar-link">Exercices</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/js/" class="sidebar-heading clickable"><span>Javascript</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/lamp/" class="sidebar-link">Serveur Lamp</a></li><li><a href="/deploy/" class="sidebar-link">Déploiement</a></li><li><a href="/docker/" class="sidebar-link">Docker</a></li><li><a href="/ci/" class="sidebar-link">Intégration continue</a></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="doctrine-et-la-bdd"><a href="#doctrine-et-la-bdd" class="header-anchor">#</a> Doctrine et la BdD</h1> <p><a href="https://symfony.com/doc/current/doctrine.html" target="_blank" rel="noopener noreferrer">La documentation officielle<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> que nous allons suivre.</p> <div style="position:relative;padding-bottom:56.25%;height:0;"><iframe src="https://www.loom.com/embed/02251e40b02349dd8bd34775a05a4e2c" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div> <h2 id="pour-resumer"><a href="#pour-resumer" class="header-anchor">#</a> Pour résumer</h2> <ul><li>Pour mettre en place la base,
+<ul><li>créer/modifier la variable <code>DATABASE_URL</code> dans <code>.env</code></li> <li>Lancer la commande <code>doctrine:database:create</code></li></ul></li> <li>Exécuter les migrations <code>doctrine:migrations:migrate</code> pour mettre à jour la <abbr title="Base de Données">BdD</abbr></li> <li>Créer des entités avec <code>make:entity</code></li> <li>Créer une ou des migrations avec <code>make:migration</code> (ou <code>doctrine:migrations:diff</code>) (⚠️ pensez à les exécuter avec <code>doctrine:migrations:migrate</code>)</li> <li>Créer de fausses données avec <code>DoctrineFixturesBundle</code> et les charger avec <code>doctrine:fixtures:load</code></li> <li>Pour insérer des données dans la base, injecter le service <code>EntityManagerInterface</code> et utiliser les méthodes <code>persist()</code> et <code>flush()</code></li> <li>Pour récupérer des données de la base, injecter le repository correspondant à la table et utiliser ses méthodes
+<ul><li>Si besoin de requêtes plus complexes, créer des méthodes en utilisant le <code>QueryBuilder</code></li></ul></li></ul> <h2 id="configurer-la-bdd"><a href="#configurer-la-bdd" class="header-anchor">#</a> Configurer la BdD</h2> <p>Pour travailler avec Doctrine, pas besoin de créer une base de données, nous allons voir comment le faire simplement avec la ligne de commande.</p> <p>D'abord, configurer l'accès à la base. Pour cela, modifier le fichier <code>.env</code> :</p> <div class="language-dotenv extra-class"><pre class="language-text"><code># In all environments, the following files are loaded if they exist,
+# the latter taking precedence over the former:
+#
+# * .env                contains default values for the environment variables needed by the app
+# * .env.local          uncommitted file with local overrides
+# * .env.$APP_ENV       committed environment-specific defaults
+# * .env.$APP_ENV.local uncommitted environment-specific overrides
+#
+# Real environment variables win over .env files.
+#
+# DO NOT DEFINE PRODUCTION SECRETS IN THIS FILE NOR IN ANY OTHER COMMITTED FILES.
+#
+# Run &quot;composer dump-env prod&quot; to compile .env files for production use (requires symfony/flex &gt;=1.2).
+# https://symfony.com/doc/current/best_practices.html#use-environment-variables-for-infrastructure-configuration
+
+# ##&gt; symfony/framework-bundle ###
+APP_ENV=dev
+APP_SECRET=e194910b102ef1a834e9967fb13ec881
+# ##&lt; symfony/framework-bundle ###
+
+# ##&gt; symfony/mailer ###
+# MAILER_DSN=smtp://localhost
+# ##&lt; symfony/mailer ###
+
+# ##&gt; doctrine/doctrine-bundle ###
+# Format described at https://www.doctrine-project.org/projects/doctrine-dbal/en/latest/reference/configuration.html#connecting-using-a-url
+# IMPORTANT: You MUST configure your server version, either here or in config/packages/doctrine.yaml
+#
+# DATABASE_URL=&quot;sqlite:///%kernel.project_dir%/var/data.db&quot;
+# DATABASE_URL=&quot;mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7&quot;
+DATABASE_URL=&quot;mysql://root:@127.0.0.1:3306/test-symfony?serverVersion=5.7&quot;
+# ##&lt; doctrine/doctrine-bundle ###
+</code></pre></div><p>La ligne qui nous intéresse est celle-ci :</p> <div class="language-dotenv extra-class"><pre class="language-text"><code>DATABASE_URL=&quot;mysql://root:pass@127.0.0.1:3306/test-symfony?serverVersion=5.7&quot;
+</code></pre></div><p>Si vous utilisez MariaDB, il est plus probable qu'une variante comme celle-ci vous convienne mieux :</p> <div class="language-dotenv extra-class"><pre class="language-text"><code>DATABASE_URL=&quot;mysql://root:pass@127.0.0.1:3307/test-symfony?serverVersion=mariadb-10.4.13&quot;
+</code></pre></div><p>Décomposons-la pour comprendre ce qu'elle fait et comment :</p> <ul><li><code>mysql://</code> est le protocole à utiliser (le type de BdD qu'on utilise, si vous préférez). Ici, mysql</li> <li><code>root:pass</code> est la combinaison <code>identifiant:motDePasse</code> à utiliser pour se connecter à notre BdD. Avec Wamp, nous allons plutôt avoir <code>root:</code> et pour Mamp <code>root:root</code></li> <li><code>127.0.0.1:3306</code> est l'adresse IP de notre BdD, suivi du port. Tant que nous travaillons en local, nous n'avons pas besoin de les changer. Noter que <code>127.0.0.1</code> peut être remplacé par <code>localhost</code>, les deux sont équivalent.</li> <li><code>/test-symfony</code> est le nom de la BdD que l'on va utiliser. Pas besoin de la créer avant, nous la créerons juste après.</li></ul> <p>Pour des exemples avec d'autres types de BdD, je vous invite à regarder la <a href="https://symfony.com/doc/current/doctrine.html#configuring-the-database" target="_blank" rel="noopener noreferrer">section dédiée de la doc officielle<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>Une fois configurée, lancer la commande <code>php bin/console doctrine:database:create</code> dans votre terminal pour créer la BdD. Bien sûr, pas besoin de le faire si votre BdD existe déjà.</p> <p>Si vous souhaitez afficher la liste des commandes disponibles avec Doctrine, lancer la commande <code>php bin/console list doctrine</code>.</p> <h3 id="debug-pour-mac-et-mamp"><a href="#debug-pour-mac-et-mamp" class="header-anchor">#</a> Débug pour Mac et Mamp</h3> <p>Si vous êtes sur Mac avec Mamp, la configuration est différente :</p> <div class="language-dotenv extra-class"><pre class="language-text"><code>DATABASE_URL=&quot;mysql://root:root@localhost:8889/exo-symfony?serverVersion=5.7&quot;
+</code></pre></div><p>Vous pouvez également avoir des soucis de version de php. Le conflit est entre la version de php de votre Mac et celle de Mamp.</p> <p>Pour les régler, voici une manipulation qui peut vous aider :</p> <ul><li>Trouver votre version de PHP dans Mamp (disons 7.4.12 pour la suite)</li> <li>Trouver la version de PHP sur votre Mac (ouvrir un terminal et taper <code>php -v</code>). Si elle est différente de celle de Mamp, faire ce qui suit.</li> <li><code>sudo ln -s /Applications/MAMP/bin/php/php7.4.12/bin/php /usr/local/bin/php</code> (remplacer <code>php7.4.12</code> par votre version de PHP dans Mamp, ex <code>php7.4.9</code>)</li> <li>Ouvrir un nouveau terminal et lancer la commande <code>php -v</code> pour vérifier que le changement a été effectué</li></ul> <h2 id="configurer-doctrine"><a href="#configurer-doctrine" class="header-anchor">#</a> Configurer Doctrine</h2> <p>Regardons le fichier <code>config/packages/doctrine.yaml</code>. Nous n'avons normalement rien besoin de modifier.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># le premier niveau nous indique que nous configurons Doctrine (logique ;) )</span>
+<span class="token key atrule">doctrine</span><span class="token punctuation">:</span>
+    <span class="token comment"># Cette section sert à configurer l'accès à la BdD</span>
+    <span class="token key atrule">dbal</span><span class="token punctuation">:</span> 
+        <span class="token comment"># Ici, nous récupérons notre variable d'environnement DATABASE_URL (définie dans .env)</span>
+        <span class="token comment"># pour nous en servir dans Doctrine.</span>
+        <span class="token key atrule">url</span><span class="token punctuation">:</span> <span class="token string">'%env(resolve:DATABASE_URL)%'</span>
+
+        <span class="token comment"># IMPORTANT: You MUST configure your server version,</span>
+        <span class="token comment"># either here or in the DATABASE_URL env var (see .env file)</span>
+        <span class="token comment">#server_version: '13'</span>
+    <span class="token comment"># Cette section va configurer l'ORM (Object-Relational mapping ou Mapping objet-relationnel).</span>
+    <span class="token comment"># C'est à dire l'outil faisant le lien entre nos objets PHP et nos tables (le coeur de Doctrine en somme)</span>
+    <span class="token key atrule">orm</span><span class="token punctuation">:</span>
+        <span class="token comment"># Doctrine va générer des classes &quot;proxy&quot; servant à gérer plus rapidement les objets (en ajoutant des méthodes spécifiques pour son usage, comme gérer le cache par exemple)</span>
+        <span class="token key atrule">auto_generate_proxy_classes</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+        <span class="token comment"># Ce paramètre défini comment Doctrine convertit le nom d'une classe en un nom de table (et même chose pour les noms de propriétés en noms de champs)</span>
+        <span class="token key atrule">naming_strategy</span><span class="token punctuation">:</span> doctrine.orm.naming_strategy.underscore_number_aware
+        <span class="token comment"># On indique à Doctrine qu'on veut qu'il détecte nos entités (objets à convertir en tables) automatiquement</span>
+        <span class="token key atrule">auto_mapping</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
+        <span class="token comment"># On lui indique quand même sur quels dossiers il doit travailler et comment les lire</span>
+        <span class="token key atrule">mappings</span><span class="token punctuation">:</span>
+            <span class="token comment"># Ici, nous pouvons donner à Doctrine plusieurs dossiers où se trouvent des entités</span>
+            <span class="token comment"># Cette section sert surtout si vous utilisez une structure personnalisée (ce que nous n'allons pas faire ;) ).</span>
+            <span class="token key atrule">App</span><span class="token punctuation">:</span>
+                <span class="token comment"># Un paramètre historique de Symfony, nous n'en tiendrons pas compte. Il servait en Symfony 2 et 3 (nous voyons la version 5)</span>
+                <span class="token key atrule">is_bundle</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+                <span class="token comment"># Nous indiquons que notre mapping (les indications des types des champs par exemple) est fait à l'aide d'annotations (il est possible de le faire en Yaml ou en Xml, mais ces méthodes sont dépréciées)</span>
+                <span class="token key atrule">type</span><span class="token punctuation">:</span> annotation
+                <span class="token comment"># Nous indiquons dans quel dossier chercher nos entités. %kernel.project_dir% est un paramètre, toujours défini dans Symfony, vous permettant de récupérer le chemin vers la racine du projet. On s'en sert surtout dans les configurations des packages (dépendances ou librairies que l'on charge avec Composer dans notre projet)</span>
+                <span class="token key atrule">dir</span><span class="token punctuation">:</span> <span class="token string">'%kernel.project_dir%/src/Entity'</span>
+                <span class="token key atrule">prefix</span><span class="token punctuation">:</span> <span class="token string">'App\Entity'</span>
+                <span class="token key atrule">alias</span><span class="token punctuation">:</span> App
+</code></pre></div><h2 id="creer-des-entites"><a href="#creer-des-entites" class="header-anchor">#</a> Créer des entités</h2> <p>Une entité est une classe PHP (rangée, dans notre cas, dans le dossier <code>src/Entity</code>) qui va correspondre à une table de notre BdD. Chaque ligne de cette table correspondra à un objet.</p> <p>Pour faire schématique :</p> <ul><li>Classe = table</li> <li>Objet = ligne de cette table</li></ul> <p>Nous allons créer 2 entités :</p> <ul><li><code>Article</code> un article de blog, contenant un titre (string de 255 caractères), un contenu (text) et une catégorie (Tag)</li> <li><code>Tag</code> une catégorie, contenant un nom (string de 128 caractères), qui peut être liée à plusieurs articles</li></ul> <p>Pour créer ces objets, nous avons 2 choix :</p> <ul><li>les écrire nous-même</li> <li>les générer à l'aide de la commande <code>php bin/console make:entity</code></li></ul> <p>Je vous conseille toujours le second choix 😉.</p> <p>Dans un premier temps, créons la classe <code>Article</code>.</p> <ul><li>On exécute la commande</li> <li>On précise le nom de la classe qu'on veut créer : <code>Article</code></li> <li>Puis on ajoute nos champs
+<ul><li><code>title</code> de type string, longueur 255 et non <code>null</code></li> <li><code>content</code> de type text et non <code>null</code></li></ul></li> <li>Arrêtons-nous ici pour cette entité. Nous ajouterons la relation avec Tag en créant cette entité.</li></ul> <p>Créons la classe <code>Tag</code></p> <ul><li>On exécute la commande</li> <li>On précise le nom de la classe qu'on veut créer : <code>Tag</code></li> <li>Puis on ajoute nos champs
+<ul><li><code>name</code> de type string, longueur 128 et non <code>null</code></li> <li><code>articles</code> de type relation (nous serons ainsi guidés pour choisir le type de relation, ici nous voulons du <code>OneToMany</code> : 1 Tag lié à n Articles)
+<ul><li>La commande nous propose également de créer un champ <code>tag</code> dans <code>Article</code>. Profitons-en, ça pourra nous servir !</li> <li>La commande nous demande également si la propriété <code>tag</code> de <code>Article</code> peut être null. Disons que non (nos articles doivent obligatoirement avoir une catégorie).</li> <li>Contrairement à la vidéo, à la question d'activer <code>orphanRemoval</code> sur cette relation, dire non.</li> <li>La relation est ajoutée !</li> <li>Valider une dernière fois pour terminer les modifications</li></ul></li></ul></li></ul> <p>Nous avons maintenant 4 fichiers créés, dont ces 2 entités :</p> <ul><li><code>src/Entity/Tag.php</code> :</li></ul> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Entity</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Repository<span class="token punctuation">\</span>TagRepository</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Common<span class="token punctuation">\</span>Collections<span class="token punctuation">\</span>ArrayCollection</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Common<span class="token punctuation">\</span>Collections<span class="token punctuation">\</span>Collection</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>ORM<span class="token punctuation">\</span>Mapping</span> <span class="token keyword">as</span> <span class="token constant">ORM</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @ORM\Entity(repositoryClass=TagRepository::class)
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Tag</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type=&quot;integer&quot;)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$id</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @ORM\Column(type=&quot;string&quot;, length=128)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$name</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @ORM\OneToMany(targetEntity=Article::class, mappedBy=&quot;tag&quot;)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$articles</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">articles</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayCollection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token keyword return-type">int</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">id</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token keyword return-type">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">name</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">setName</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$name</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">name</span> <span class="token operator">=</span> <span class="token variable">$name</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * @return Collection|Article[]
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getArticles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Collection</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">articles</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">addArticle</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Article</span> <span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">articles</span><span class="token operator">-&gt;</span><span class="token function">contains</span><span class="token punctuation">(</span><span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">articles</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token variable">$article</span><span class="token punctuation">;</span>
+            <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTag</span><span class="token punctuation">(</span><span class="token variable">$this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">removeArticle</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Article</span> <span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">articles</span><span class="token operator">-&gt;</span><span class="token function">removeElement</span><span class="token punctuation">(</span><span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// set the owning side to null (unless already changed)</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">getTag</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token variable">$this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTag</span><span class="token punctuation">(</span><span class="token constant">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</span></code></pre></div><ul><li><code>src/Entity/Article.php</code> :</li></ul> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Entity</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Repository<span class="token punctuation">\</span>ArticleRepository</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>ORM<span class="token punctuation">\</span>Mapping</span> <span class="token keyword">as</span> <span class="token constant">ORM</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">Article</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type=&quot;integer&quot;)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$id</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @ORM\Column(type=&quot;string&quot;, length=255)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$title</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @ORM\Column(type=&quot;text&quot;)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$content</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * @ORM\ManyToOne(targetEntity=Tag::class, inversedBy=&quot;articles&quot;)
+     * @ORM\JoinColumn(nullable=false)
+     */</span>
+    <span class="token keyword">private</span> <span class="token variable">$tag</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token keyword return-type">int</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">id</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getTitle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token keyword return-type">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">title</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">setTitle</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$title</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">title</span> <span class="token operator">=</span> <span class="token variable">$title</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token keyword return-type">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">content</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">setContent</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">content</span> <span class="token operator">=</span> <span class="token variable">$content</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getTag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token operator">?</span><span class="token class-name return-type">Tag</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">tag</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">setTag</span><span class="token punctuation">(</span><span class="token operator">?</span><span class="token class-name type-declaration">Tag</span> <span class="token variable">$tag</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token keyword return-type">self</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">tag</span> <span class="token operator">=</span> <span class="token variable">$tag</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div><h2 id="les-migrations"><a href="#les-migrations" class="header-anchor">#</a> Les migrations</h2> <p>Si vous n'avez pas créé la BdD, Symfony met à votre disposition une commande pour le faire :</p> <div class="language-shell extra-class"><pre class="language-shell"><code>php bin/console doctrine:database:create
+</code></pre></div><p>Lorsque nous créons des entités, nous voulons que nos changements apparaissent dans notre BdD (tel était notre objectif, au départ). Pour cela, nous avons plusieurs moyens, mais le plus propre d'entre eux est de créer des migrations.</p> <p>Une migration contient 2 ensemble de requêtes SQL, pour vous permettre de passer d'une version à l'autre de votre BdD. Son nom contient la date précise où vous l'avez générée et permet ainsi de savoir dans quel ordre les migrations doivent être exécutées.</p> <p>Elle contient 2 méthodes :</p> <ul><li><code>up</code> : les requêtes à exécuter pour mettre à jour la base</li> <li><code>down</code> : les requêtes à exécuter pour annuler ces modifications (on s'en sert principalement en cas de problèmes)</li></ul> <p>Pour générer une migration, il faut utiliser la commande (j'ajoute l'option <code>-n</code> pour éviter que la ligne de commande demande une confirmation) :</p> <div class="language-shell extra-class"><pre class="language-shell"><code>php bin/console make:migration
+</code></pre></div><p>La commande <code>php bin/console doctrine:migrations:diff -n</code> fait exactement la même chose.</p> <p><strong>⚠️ Conseil</strong> : il peut être utile d'exécuter les migrations <em>avant</em> d'en générer une nouvelle en exécutant <code>php bin/console doctrine:migrations:migrate -n</code> avant la commande <code>make:migration</code> / <code>doctrine:migrations:diff</code></p> <p>Dans notre exemple, notre migration ressemblera à ceci :</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">declare</span><span class="token punctuation">(</span>strict_types<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">namespace</span> <span class="token package">DoctrineMigrations</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>DBAL<span class="token punctuation">\</span>Schema<span class="token punctuation">\</span>Schema</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Migrations<span class="token punctuation">\</span>AbstractMigration</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Auto-generated Migration: Please modify to your needs!
+ */</span>
+<span class="token keyword">final</span> <span class="token keyword">class</span> <span class="token class-name-definition class-name">Version20210226082708</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractMigration</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword return-type">string</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string single-quoted-string">''</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">up</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Schema</span> <span class="token variable">$schema</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// this up() migration is auto-generated, please modify it to your needs</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'CREATE TABLE article (id INT AUTO_INCREMENT NOT NULL, tag_id INT NOT NULL, title VARCHAR(255) NOT NULL, content LONGTEXT NOT NULL, INDEX IDX_23A0E66BAD26311 (tag_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'CREATE TABLE tag (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(128) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'ALTER TABLE article ADD CONSTRAINT FK_23A0E66BAD26311 FOREIGN KEY (tag_id) REFERENCES tag (id)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">down</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Schema</span> <span class="token variable">$schema</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token keyword return-type">void</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// this down() migration is auto-generated, please modify it to your needs</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'ALTER TABLE article DROP FOREIGN KEY FK_23A0E66BAD26311'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'DROP TABLE article'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">addSql</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'DROP TABLE tag'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div><p>Pour exécuter les migrations :</p> <div class="language-shell extra-class"><pre class="language-shell"><code>php bin/console doctrine:migrations:migrate -n
+</code></pre></div><p>Cette commande exécutera toutes les migrations qui n'ont pas déjà été lancées (la liste des migrations déjà exécutées se trouve dans la table <code>doctrine_migration_versions</code> de votre BdD).</p> <p><strong>⚠️ Conseil :</strong> Il est important que votre base puisse être construite de 0 avec les migrations (et éventuellement des fixtures). Vous pouvez tester</p> <h3 id="annuler-une-migration"><a href="#annuler-une-migration" class="header-anchor">#</a> Annuler une migration</h3> <p>Si une migration s'est mal passée (une erreur s'est produite pendant la migration ou crée un bug, par exemple), vous pouvez l'annuler avec la commande <code>php bin/console doctrine:migrations:execute --down DoctrineMigrations\VersionXXX</code> où <code>XXX</code> est le numéro de version (dans les faits, on passe le FQCN de la migration à la commande).</p> <h2 id="l-entitymanager-pour-sauvegarder"><a href="#l-entitymanager-pour-sauvegarder" class="header-anchor">#</a> L'EntityManager pour sauvegarder</h2> <p>Maintenant que nous avons notre schéma de BdD (nos tables et nos colonnes), voyons comment ajouter des entrées dans nos tables. Nous allons le faire depuis un controller, mais sachez que ce fonctionnement peut être utilisé dans n'importe quel service (classe se trouvant dans <code>src</code>, en dehors de notre dossier <code>src/Entity</code>).</p> <p>Un exemple détaillé d'utilisation :</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Article</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Tag</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>ORM<span class="token punctuation">\</span>EntityManagerInterface</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>FrameworkBundle<span class="token punctuation">\</span>Controller<span class="token punctuation">\</span>AbstractController</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>HttpFoundation<span class="token punctuation">\</span>Response</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>Annotation<span class="token punctuation">\</span>Route</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * @Route(&quot;/blog&quot;, name=&quot;blog_&quot;)
+ */</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">BlogController</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractController</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+
+    <span class="token comment">/**
+     * @Route(&quot;/fixtures&quot;, name=&quot;fixtures&quot;)
+     * @param EntityManagerInterface $entityManager
+     *
+     * @return Response
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">fixtures</span><span class="token punctuation">(</span><span class="token class-name type-declaration">EntityManagerInterface</span> <span class="token variable">$entityManager</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// On crée un objet Tag (nous n'en avons actuellement aucun)</span>
+        <span class="token variable">$tag</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$tag</span><span class="token operator">-&gt;</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'animaux'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// On crée un premier article et on donne des valeurs à ses différents champs</span>
+        <span class="token variable">$article</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Article</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'Les animaux fantastiques'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setContent</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'Un contenu fabuleux pour un article fantastique'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// Ici, on fait le lien entre notre article et le tag que nous avons défini plus haut.</span>
+        <span class="token comment">// Doctrine se chargera de retranscrire ce lien dans la BdD.</span>
+        <span class="token comment">// Dans les faits, il mettra l'id de notre tag dans la colonne tag_id de notre article.</span>
+        <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTag</span><span class="token punctuation">(</span><span class="token variable">$tag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Ici, on dit à l'entity manager qu'il devra sauvegarder nos deux entités. Vous pouvez voir ce persist que le add de Git</span>
+        <span class="token comment">// Noter qu'il faut appeler la méthode persist sur chacun de nos objets</span>
+        <span class="token comment">// Il est possible de ne le faire qu'une fois, mais c'est une astuce que vous verrez plus tard ;)</span>
+        <span class="token variable">$entityManager</span><span class="token operator">-&gt;</span><span class="token function">persist</span><span class="token punctuation">(</span><span class="token variable">$tag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token variable">$entityManager</span><span class="token operator">-&gt;</span><span class="token function">persist</span><span class="token punctuation">(</span><span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Noter que les entrée n'existent pas encore en base.</span>
+        <span class="token comment">// Elle n'existent qu'une fois que nous appelons la méthode flush de l'entity manager.</span>
+        <span class="token comment">// Vous pouvez voir la méthode persist comme le commit de Git.</span>
+        <span class="token variable">$entityManager</span><span class="token operator">-&gt;</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Ici, j'ai choisi de rediriger vers l'accueil du blog</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">redirectToRoute</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'blog_index'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</span></code></pre></div><p>Pour supprimer une entité de la base, utiliser la méthode <code>remove</code> :</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token variable">$entityManager</span><span class="token operator">-&gt;</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$entityManager</span><span class="token operator">-&gt;</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>Il faut donc bien retenir le fonctionnement des méthodes <code>persist</code> et <code>flush</code> qui font tout le travail.</p> <h2 id="le-paramconverter-de-doctrine"><a href="#le-paramconverter-de-doctrine" class="header-anchor">#</a> Le ParamConverter de Doctrine</h2> <p>La <a href="https://symfony.com/doc/current/doctrine.html#automatically-fetching-objects-paramconverter" target="_blank" rel="noopener noreferrer">documentation officielle<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>
+La <a href="https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html" target="_blank" rel="noopener noreferrer">documentation des ParamConverter<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>Dans un controller, vous pouvez utiliser les paramètres de votre route pour récupérer directement une entité (une ligne de votre table)</p> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token comment">/**
+     * @Route(&quot;/{id}&quot;, name=&quot;show&quot;)
+     *
+     * @param Article $article
+     *
+     * @return Response
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">show</span><span class="token punctuation">(</span><span class="token class-name type-declaration">Article</span> <span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'blog/show.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'article'</span> <span class="token operator">=&gt;</span> <span class="token variable">$article</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>Pour appeler cette route, il suffira de faire :</p> <div class="language-twig extra-class"><pre class="language-twig"><code><span class="token other">&lt;a href=&quot;</span><span class="token tag"><span class="token ld"><span class="token punctuation">{{</span></span> <span class="token property">path</span><span class="token punctuation">(</span><span class="token string"><span class="token punctuation">'</span>show<span class="token punctuation">'</span></span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token property">id</span><span class="token punctuation">:</span> <span class="token property">entity</span><span class="token punctuation">.</span><span class="token property">id</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token rd"><span class="token punctuation">}}</span></span></span><span class="token other">&quot;&gt;Un lien vers ma page<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span></span>
+</code></pre></div><p>Dans l'exemple ci-dessus, notre route contient un paramètre <code>id</code>, et nous demandons à Symfony de la convertir en un objet <code>Article</code>. Pour cela, Doctrine va utiliser ce que l'on appelle un ParamConverter (un objet qui converti les paramètres d'une route/action). Dans les faits, il va vérifier si le nom du paramètre de la route correspond à une propriété de
+l'objet. Si c'est le cas, il va faire une requête <code>SELECT</code> sur la table <code>article</code> pour récupérer l'entrée correspondante (avec un <code>WHERE id = $id</code>, en somme).</p> <h2 id="le-repository-pour-recuperer-des-entites"><a href="#le-repository-pour-recuperer-des-entites" class="header-anchor">#</a> Le Repository pour récupérer des entités</h2> <p>La <a href="https://symfony.com/doc/current/doctrine.html#doctrine-queries" target="_blank" rel="noopener noreferrer">documentation sur les Repositories<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>Un objet Repository est lié à une entité précise et permet de faire des requêtes <code>SELECT</code> sur la table liée.</p> <p>Dans l'exemple précédent, le ParamConverter utilise une méthode pratique et commune à tous les Repositories : <code>find($id)</code>. Il y a 4 méthodes disponibles dans tous les repositories, détaillons-les :</p> <ul><li><code>findAll()</code> : Récupère tous les objets de la table (<code>SELECT * FROM article</code> par exemple)</li> <li><code>find($id)</code> prend en paramètre un identifiant (colonne <code>id</code> d'une table) et renvoie l'objet correspondant (<code>SELECT * FROM article WHERE id = $id</code> par exemple)</li> <li><code>findOneBy(array $criteria, array $orderBy = null)</code> prend 2 paramètres, un tableau de critères (les colonnes et les valeurs à mettre dans un <code>WHERE</code>) et un tableau pour ordonner (avec la colonne et l'ordre) et renvoie <strong>un</strong> objet correspondant aux critères (<code>SELECT * FROM article WHERE title = $title ORDER BY id DESC LIMIT 1</code> par exemple).</li></ul> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token comment">/**
+     * @Route(&quot;/{title}&quot;, name=&quot;show&quot;)
+     * 
+     * On récupère le paramètre title de notre route
+     * et on injecte le repository dont nous allons avoir besoin.
+     * 
+     * Noter que l'on aurait pu utiliser le ParamConverter de Doctrine pour récupérer plus simplement l'article par son titre
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">show</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$title</span><span class="token punctuation">,</span> <span class="token class-name type-declaration">ArticleRepository</span> <span class="token variable">$repository</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// On ne veut récupérer qu'un seul article</span>
+        <span class="token variable">$article</span> <span class="token operator">=</span> <span class="token variable">$repository</span><span class="token operator">-&gt;</span><span class="token function">findOneBy</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token comment">// On passe un tableau de critères, ne contenant qu'une entrée :</span>
+            <span class="token comment">// on cherche dans la colonne title de la table, avec la valeur $title</span>
+            <span class="token comment">// Ce qui revient à faire en SQL : WHERE title = '$title'</span>
+            <span class="token string single-quoted-string">'title'</span> <span class="token operator">=&gt;</span> <span class="token variable">$title</span><span class="token punctuation">,</span>  
+        <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token comment">// On précise comment trier les résultats</span>
+            <span class="token comment">// Ce qui revient à faire en SQL : ORDER BY id DESC</span>
+            <span class="token comment">// Ce tri nous est utile si plusieurs articles ont le même titre</span>
+            <span class="token comment">// On ne prend ainsi que celui ayant l'id le plus élevé</span>
+            <span class="token string single-quoted-string">'id'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'DESC'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'blog/show.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'article'</span> <span class="token operator">=&gt;</span> <span class="token variable">$article</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><ul><li><code>findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)</code> : prend 4 paramètres, un tableau de critères, un tableau pour ordonner, la quantité maximum d'objets à retourner (<code>LIMIT</code> en SQL), et le premier élément à retourner (premier paramètre de <code>LIMIT</code>) (<code>SELECT * FROM article WHERE title = $title ORDER BY id DESC LIMIT 0,5</code> par
+exemple).</li></ul> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token comment">/**
+     * @Route(&quot;/{title}&quot;, name=&quot;show&quot;)
+     * 
+     * On récupère le paramètre title de notre route
+     * et on injecte le repository dont nous allons avoir besoin.
+     * 
+     * Noter que l'on aurait pu utiliser le ParamConverter de Doctrine pour récupérer plus simplement l'article par son titre
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">show</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$title</span><span class="token punctuation">,</span> <span class="token class-name type-declaration">ArticleRepository</span> <span class="token variable">$repository</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// On ne veut récupérer qu'un seul article</span>
+        <span class="token variable">$article</span> <span class="token operator">=</span> <span class="token variable">$repository</span><span class="token operator">-&gt;</span><span class="token function">findBy</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+            <span class="token comment">// On passe un tableau de critères, ne contenant qu'une entrée :</span>
+            <span class="token comment">// on cherche dans la colonne title de la table, avec la valeur $title</span>
+            <span class="token comment">// Ce qui revient à faire en SQL : WHERE title = '$title'</span>
+            <span class="token string single-quoted-string">'title'</span> <span class="token operator">=&gt;</span> <span class="token variable">$title</span><span class="token punctuation">,</span>  
+        <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token comment">// On précise comment trier les résultats</span>
+            <span class="token comment">// Ce qui revient à faire en SQL : ORDER BY id DESC</span>
+            <span class="token string single-quoted-string">'id'</span> <span class="token operator">=&gt;</span> <span class="token string single-quoted-string">'DESC'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token number">5</span><span class="token punctuation">,</span> <span class="token comment">// On veut récupérer 5 résultats maximum</span>
+        <span class="token number">0</span> <span class="token comment">// On commence au premier enregistrement, nous avons donc l'équivalent de LIMIT 0,5</span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'blog/show.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'article'</span> <span class="token operator">=&gt;</span> <span class="token variable">$article</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><h3 id="le-querybuilder-construire-ses-propres-requetes"><a href="#le-querybuilder-construire-ses-propres-requetes" class="header-anchor">#</a> Le QueryBuilder : construire ses propres requêtes</h3> <p>La <a href="https://symfony.com/doc/current/doctrine.html#querying-with-the-query-builder" target="_blank" rel="noopener noreferrer">documentation sur le QueryBuilder<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p>Nous allons presque toujours utiliser le QueryBuilder pour faire nos requêtes. Il s'agit d'un objet permettant de gérer des requêtes complexes, sans avoir à taper une requête SQL complexe, et d'utiliser la puissance de PHP (boucles, conditions, etc.) pour les construire. Prenons l'exemple fourni lorsqu'on génère un Repository :</p> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">findByExampleField</span><span class="token punctuation">(</span><span class="token variable">$value</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">createQueryBuilder</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a'</span><span class="token punctuation">)</span> <span class="token comment">// On crée un objet QueryBuilder, en mettant &quot;a&quot; comme alias de notre table article</span>
+            <span class="token operator">-&gt;</span><span class="token function">andWhere</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.exampleField = :val'</span><span class="token punctuation">)</span> <span class="token comment">// On ajoute un WHERE, avec un paramètre &quot;:val&quot; (voir le cours sur PDO et les paramètres nommés)</span>
+            <span class="token operator">-&gt;</span><span class="token function">setParameter</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'val'</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span> <span class="token comment">// On donne une valeur au paramètre. Contrairement à PDO, il n'est pas obligatoire de donner une variable ici, vous pourriez mettre une valeur directement.</span>
+            <span class="token operator">-&gt;</span><span class="token function">orderBy</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'ASC'</span><span class="token punctuation">)</span> <span class="token comment">// On tri nos éléments par &quot;id&quot; croissant</span>
+            <span class="token operator">-&gt;</span><span class="token function">setMaxResults</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">// On ne veut que 10 résultats maximum</span>
+            <span class="token operator">-&gt;</span><span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On récupère la requête générée, qui va correspondre à quelque chose comme &quot;SELECT * FROM article a WHERE a.exampleField = '$value' ORDER BY a.id LIMIT 10&quot;</span>
+            <span class="token operator">-&gt;</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On exécute la requête et on récupère les résultats. On les retourne sous la forme d'un tableau (qui contient des objets Article)</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>Voyons comment ajouter une condition dans cet exemple :</p> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token comment">// On ajoute un paramètre $inverseOrder : s'il vaut true, nous allons trier par ordre décroissant</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">findByExampleField</span><span class="token punctuation">(</span><span class="token variable">$value</span><span class="token punctuation">,</span> <span class="token variable">$inverseOrder</span> <span class="token operator">=</span> <span class="token constant boolean">false</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$qb</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">createQueryBuilder</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a'</span><span class="token punctuation">)</span> <span class="token comment">// On crée un objet QueryBuilder, en mettant &quot;a&quot; comme alias de notre table article</span>
+            <span class="token operator">-&gt;</span><span class="token function">andWhere</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.exampleField = :val'</span><span class="token punctuation">)</span> <span class="token comment">// On ajoute un WHERE, avec un paramètre &quot;:val&quot; (voir le cours sur PDO et les paramètres nommés)</span>
+            <span class="token operator">-&gt;</span><span class="token function">setParameter</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'val'</span><span class="token punctuation">,</span> <span class="token variable">$value</span><span class="token punctuation">)</span> <span class="token comment">// On donne une valeur au paramètre. Contrairement à PDO, il n'est pas obligatoire de donner une variable ici, vous pourriez mettre une valeur directement.</span>
+            <span class="token operator">-&gt;</span><span class="token function">setMaxResults</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">// On ne veut que 10 résultats maximum</span>
+        <span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token variable">$inverseOrder</span> <span class="token operator">===</span> <span class="token constant boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$qb</span><span class="token operator">-&gt;</span><span class="token function">orderBy</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'DESC'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// On tri nos éléments par &quot;id&quot; décroissant</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token variable">$qb</span><span class="token operator">-&gt;</span><span class="token function">orderBy</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.id'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'ASC'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// On tri nos éléments par &quot;id&quot; croissant</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> <span class="token variable">$qb</span>
+            <span class="token operator">-&gt;</span><span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On récupère la requête générée, qui va correspondre à quelque chose comme &quot;SELECT * FROM article a WHERE a.exampleField = '$value' ORDER BY a.id LIMIT 10&quot;</span>
+            <span class="token operator">-&gt;</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On exécute la requête et on récupère les résultats. On les retourne sous la forme d'un tableau (qui contient des objets Article)</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>Ces QueryBuilders et les différentes méthodes de notre repository nous permettent de conserver les requêtes courantes en un point, et de ne pas avoir à les réécrire.</p> <h3 id="les-jointures"><a href="#les-jointures" class="header-anchor">#</a> Les jointures</h3> <p>Imaginons que nous voulons créer un moteur de recherche pour notre blog et que nous voulons chercher à la fois dans les titres d'article, dans leur contenu, mais aussi dans les noms du tag associé. Dans ce cas, nous voulons faire notre recherche sur 2 tables, simultanément. Pour cela, nous allons utiliser une jointure :</p> <div class="language-php extra-class"><pre class="language-php"><code>    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">search</span><span class="token punctuation">(</span><span class="token keyword type-hint">string</span> <span class="token variable">$text</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">createQueryBuilder</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a'</span><span class="token punctuation">)</span> <span class="token comment">// On crée un objet QueryBuilder, en mettant &quot;a&quot; comme alias de notre table article</span>
+            <span class="token operator">-&gt;</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.tag'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'t'</span><span class="token punctuation">)</span> <span class="token comment">// Ici, on suit les propriétés de notre entité : on demande à Doctrine une jointure sur la propriété tag de notre article (il se débrouille ensuite pour faire la correspondance par id), et on lui dit de l'appeler t dans la suite de la requête</span>
+            <span class="token operator">-&gt;</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.content LIKE :val'</span><span class="token punctuation">)</span> <span class="token comment">// On ajoute un WHERE, avec un paramètre &quot;:val&quot; (voir le cours sur PDO et les paramètres nommés)</span>
+            <span class="token operator">-&gt;</span><span class="token function">orWhere</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'a.title LIKE :val'</span><span class="token punctuation">)</span>
+            <span class="token operator">-&gt;</span><span class="token function">orWhere</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'t.name LIKE :val'</span><span class="token punctuation">)</span><span class="token comment">// On peut ensuite utiliser notre table t (les tags) pour regarder le champs name</span>
+            <span class="token operator">-&gt;</span><span class="token function">setParameter</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'val'</span><span class="token punctuation">,</span> <span class="token string single-quoted-string">'%'</span><span class="token operator">.</span><span class="token variable">$text</span><span class="token operator">.</span><span class="token string single-quoted-string">'%'</span><span class="token punctuation">)</span> <span class="token comment">// On donne une valeur au paramètre. Contrairement à PDO, il n'est pas obligatoire de donner une variable ici, vous pourriez mettre une valeur directement.</span>
+            <span class="token operator">-&gt;</span><span class="token function">getQuery</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On récupère la requête générée</span>
+            <span class="token operator">-&gt;</span><span class="token function">getResult</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// On exécute la requête et on récupère les résultats. On les retourne sous la forme d'un tableau (qui contient des objets Article)</span>
+        <span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>Nous avons donc récupéré des objets Article grâce à notre recherche sur 3 colonnes différentes (dans 2 tables différentes !).</p> <h3 id="les-differentes-methodes-du-querybuilder"><a href="#les-differentes-methodes-du-querybuilder" class="header-anchor">#</a> Les différentes méthodes du <code>QueryBuilder</code></h3> <ul><li><code>select()</code> remplace le contenu de la clause <code>SELECT</code> de la requête. Prend une chaine de caractères ou un tableau.</li> <li><code>addSelect()</code> ajoute des éléments à la clause <code>SELECT</code> de la requête. Prend une chaine de caractères ou un tableau.</li> <li><code>where()</code>, <code>orWhere()</code>, <code>andWhere()</code> pour gérer la clause <code>WHERE</code> de la requête (la première remplace). Prend une chaine de caractères.</li> <li><code>setParameter()</code> pour définir la valeur d'un paramètre (défini avec <code>:nomDeLaVariable</code>). Prend 2 paramètres : le nom de la variable (sans les <code>:</code>) et en second, la valeur (peut être une variable, ou non)</li> <li><code>join()</code>, <code>innerJoin()</code>, <code>leftJoin()</code> pour créer une jointure avec une table. Prend le nom de la propriété à &quot;suivre&quot; (dans notre exemple <code>a.tags</code> pour joindre la table <code>tag</code>) et en second paramètre, l'alias de la table jointe (<code>t</code> par exemple).</li> <li><code>orderBy()</code>, <code>addOrderBy()</code> pour gérer la clause <code>ORDER BY</code> de la requête. Prend 2 paramètres : la propriété sur laquelle appliquer le tri et en second, le sens du tri <code>ASC</code> ou <code>DESC</code>.</li> <li><code>setMaxResults()</code> pour gérer la clause <code>LIMIT</code> (limit) de la requête. Prend le nombre d'éléments à récupérer.</li> <li><code>setFirstResult()</code> pour gérer la clause <code>LIMIT</code> (offset) de la requête. Prend le numéro (indexé en 0) du premier élément à afficher.</li> <li><code>getQuery()</code> récupère les différentes clauses entrées et crée la requête DQL et la requête SQL qui va être appliquée.</li></ul> <p>À partir de la <code>Query</code> (retournée par <code>getQuery()</code>), nous avons plusieurs moyens de récupérer nos résultats :</p> <ul><li><code>getResult()</code> retourne les résultats de la requête sous la forme d'un tableau d'objets.</li> <li><code>getSingleResult()</code> retourne un seul résultat. Si la requête en renvoie plusieurs ou aucun, une exception sera levée.</li> <li><code>getOneOrNullResult()</code> retourne aucun ou un seul résultat (null ou un objet). Si la requête en renvoie plusieurs, une exception sera levée.</li> <li><code>getScalarResult()</code> retourne un tableau de nombres (si vous avez une requête avec uniquement des <code>COUNT</code> ou équivalent dans la clause <code>SELECT</code>).</li> <li><code>getSingleScalarResult()</code> retourne un nombre (si vous avez une requête avec uniquement un <code>COUNT</code> ou équivalent dans la clause <code>SELECT</code>).</li></ul> <h2 id="tester-nos-requetes"><a href="#tester-nos-requetes" class="header-anchor">#</a> Tester nos requêtes</h2> <p>En général, nous allons vouloir utiliser nos Repositories dans d'autres services (classes en dehors de <code>src/Entity</code>). Pour tester nos requêtes, nous pouvons par exemple appeler notre Repository dans un Controller :</p> <div class="language-php extra-class"><pre class="language-php"><code><span class="token comment">// src/Controller/BlogController.php</span>
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>Controller</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Repository<span class="token punctuation">\</span>ArticleRepository</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>FrameworkBundle<span class="token punctuation">\</span>Controller<span class="token punctuation">\</span>AbstractController</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>HttpFoundation<span class="token punctuation">\</span>Response</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Symfony<span class="token punctuation">\</span>Component<span class="token punctuation">\</span>Routing<span class="token punctuation">\</span>Annotation<span class="token punctuation">\</span>Route</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">BlogController</span> <span class="token keyword">extends</span> <span class="token class-name">AbstractController</span> 
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @Route(&quot;/blog/search/{text}&quot;, name=&quot;blog_search&quot;)
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">search</span><span class="token punctuation">(</span><span class="token class-name type-declaration">ArticleRepository</span> <span class="token variable">$repo</span><span class="token punctuation">,</span> <span class="token keyword type-hint">string</span> <span class="token variable">$text</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name return-type">Response</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$articles</span> <span class="token operator">=</span> <span class="token variable">$repo</span><span class="token operator">-&gt;</span><span class="token function">search</span><span class="token punctuation">(</span><span class="token variable">$text</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token function">dump</span><span class="token punctuation">(</span><span class="token variable">$articles</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Cette fonction va afficher la variable $articles et son contenu (un peu comme un var_dump(), mais en plus beau et plus pratique) dans le profiler de Symfony</span>
+        <span class="token function">dd</span><span class="token punctuation">(</span><span class="token variable">$articles</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Cette fonction va afficher la variable $articles et son contenu, mais aussi arrêter le programme (dump and die) (comme un exit(var_dump()))</span>
+        
+        <span class="token keyword">return</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string single-quoted-string">'blog/search.html.twig'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'results'</span> <span class="token operator">=&gt;</span> <span class="token variable">$articles</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="creer-de-fausses-donnees-fixtures"><a href="#creer-de-fausses-donnees-fixtures" class="header-anchor">#</a> Créer de fausses données (fixtures)</h2> <div style="position:relative;padding-bottom:56.25%;height:0;"><iframe src="https://www.loom.com/embed/9cc4ebbdd27540fb8430c26130c778cd" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="allowfullscreen" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div> <p>Pour tester notre application (surtout pour le développement), nous pouvons insérer des données de bases (souvent fausses). Pour cela, je vous conseille d'utiliser le <a href="https://symfony.com/doc/current/bundles/DoctrineFixturesBundle/index.html" target="_blank" rel="noopener noreferrer">DoctrineFixturesBundle<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>.</p> <p>Par défaut, l'installation de ce bundle crée un fichier <code>src/DataFixtures/AppFixtures.php</code>. Vous pouvez vous en servir pour créer tout ou partie de vos fausses données. Personnellement, je vous conseille de supprimer ce fichier et d'en créer un par table que vous voulez remplir (un peu plus compliqué, mais plus propre et léger à relire).</p> <p>Conservons notre exemple de blog, pour créer 2 jeux de fixtures (fausses données). Il faut d'abord choisir dans quel ordre nous allons faire l'insertion. Dans notre cas (2 entités), nous pouvons le faire aussi bien dans un sens que dans l'autre. Je choisis de commencer par les tags, puis les articles :</p> <ul><li><code>src/DataFixtures/TagFixtures.php</code> :</li></ul> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>DataFixtures</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Tag</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>FixturesBundle<span class="token punctuation">\</span>Fixture</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Persistence<span class="token punctuation">\</span>ObjectManager</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TagFixtures</span> <span class="token keyword">extends</span> <span class="token class-name">Fixture</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @inheritDoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token class-name type-declaration">ObjectManager</span> <span class="token variable">$manager</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// C'est dans cette méthode que nous allons créer nos données</span>
+        <span class="token comment">// et les sauvegarder avec l'ObjetManager (un parent de EntityManager)</span>
+        
+        <span class="token comment">// Je veux utiliser des noms de tags qui sonnent un peu réels</span>
+        <span class="token comment">// Même si j'utilise des mots au hasard</span>
+        <span class="token variable">$tagNames</span> <span class="token operator">=</span> <span class="token punctuation">[</span>
+            <span class="token string single-quoted-string">'informatiques'</span><span class="token punctuation">,</span>
+            <span class="token string single-quoted-string">'chiens'</span><span class="token punctuation">,</span>
+            <span class="token string single-quoted-string">'navigateurs'</span><span class="token punctuation">,</span>
+            <span class="token string single-quoted-string">'statistiques'</span><span class="token punctuation">,</span>
+            <span class="token string single-quoted-string">'promenades'</span><span class="token punctuation">,</span>
+            <span class="token string single-quoted-string">'archerie'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">foreach</span> <span class="token punctuation">(</span><span class="token variable">$tagNames</span> <span class="token keyword">as</span> <span class="token variable">$tagName</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Je crée des objets tags et les rempli</span>
+            <span class="token comment">// avant d'en demander l'enregistrement à l'ObjectManager</span>
+            <span class="token variable">$tag</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$tag</span><span class="token operator">-&gt;</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token variable">$tagName</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token variable">$manager</span><span class="token operator">-&gt;</span><span class="token function">persist</span><span class="token punctuation">(</span><span class="token variable">$tag</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// On sauvegarde effectivement tout en base</span>
+        <span class="token variable">$manager</span><span class="token operator">-&gt;</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div><ul><li><code>src/DataFixtures/ArticleFixtures.php</code> :</li></ul> <div class="language-php extra-class"><pre class="language-php"><code><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+
+<span class="token keyword">namespace</span> <span class="token package">App<span class="token punctuation">\</span>DataFixtures</span><span class="token punctuation">;</span>
+
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Entity<span class="token punctuation">\</span>Article</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">App<span class="token punctuation">\</span>Repository<span class="token punctuation">\</span>TagRepository</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Bundle<span class="token punctuation">\</span>FixturesBundle<span class="token punctuation">\</span>Fixture</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Common<span class="token punctuation">\</span>DataFixtures<span class="token punctuation">\</span>DependentFixtureInterface</span><span class="token punctuation">;</span>
+<span class="token keyword">use</span> <span class="token package">Doctrine<span class="token punctuation">\</span>Persistence<span class="token punctuation">\</span>ObjectManager</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Implémenter DependentFixtureInterface permet au bundle de savoir</span>
+<span class="token comment">// qu'il va devoir charger d'autres fixtures avant, ce qui va définir </span>
+<span class="token comment">// un ordre de priorité</span>
+<span class="token keyword">class</span> <span class="token class-name-definition class-name">TagFixtures</span> <span class="token keyword">extends</span> <span class="token class-name">Fixture</span> <span class="token keyword">implements</span> <span class="token class-name">DependentFixtureInterface</span>
+<span class="token punctuation">{</span>
+    <span class="token comment">/**
+     * @var TagRepository 
+     */</span>
+    <span class="token keyword">protected</span> <span class="token variable">$tagRepository</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// Ici, on va se servir des tags qu'on a déjà inséré en base (pas obligatoire ;) )</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">__construct</span><span class="token punctuation">(</span><span class="token class-name type-declaration">TagRepository</span> <span class="token variable">$tagRepository</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">tagRepository</span> <span class="token operator">=</span> <span class="token variable">$tagRepository</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">/**
+     * @inheritDoc
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">load</span><span class="token punctuation">(</span><span class="token class-name type-declaration">ObjectManager</span> <span class="token variable">$manager</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token comment">// C'est dans cette méthode que nous allons créer nos données</span>
+        <span class="token comment">// et les sauvegarder avec l'ObjetManager (un parent de EntityManager)</span>
+        
+        <span class="token comment">// Les titres et contenus des articles va être identiques, on les prépare avant la boucle</span>
+        
+        <span class="token variable">$title</span> <span class="token operator">=</span> <span class="token string single-quoted-string">' : Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...'</span><span class="token punctuation">;</span>
+        <span class="token variable">$content</span> <span class="token operator">=</span> <span class="token string double-quoted-string">&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus neque justo, id vulputate velit malesuada in. Donec vulputate ipsum vitae orci vestibulum, et tempus orci hendrerit. Vestibulum mattis sit amet eros sodales accumsan. Proin auctor tellus vitae hendrerit viverra. Aliquam erat volutpat. Duis suscipit lacus tortor, non hendrerit sapien dapibus vel. Phasellus urna orci, porta vel arcu vitae, posuere efficitur diam. Phasellus convallis ante enim, a lobortis tortor fermentum et. Aenean hendrerit congue nulla quis interdum. Nullam quis magna sem. Duis quis pulvinar ante, ac posuere velit.&quot;</span><span class="token punctuation">;</span>
+        
+        
+        <span class="token comment">// Pour les utiliser dans les articles, on récupère la liste complète de nos tags</span>
+        <span class="token variable">$tags</span> <span class="token operator">=</span> <span class="token variable">$this</span><span class="token operator">-&gt;</span><span class="token property">tagRepository</span><span class="token operator">-&gt;</span><span class="token function">findAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// On crée une dizaine d'articles</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token variable">$i</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token variable">$i</span> <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token variable">$i</span><span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token variable">$article</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Article</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token variable">$i</span><span class="token operator">.</span><span class="token variable">$title</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setContent</span><span class="token punctuation">(</span><span class="token variable">$content</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            
+            <span class="token comment">// On récupère un tag aléatoire dans la liste $tags, qu'on va associer à notre article</span>
+            <span class="token variable">$randomNumber</span> <span class="token operator">=</span> <span class="token function">mt_rand</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token variable">$tags</span><span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token variable">$article</span><span class="token operator">-&gt;</span><span class="token function">setTag</span><span class="token punctuation">(</span><span class="token variable">$tags</span><span class="token punctuation">[</span><span class="token variable">$randomNumber</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// Si $randomNumber contient 0, on récupère notre 1er tag</span>
+            
+            <span class="token comment">// On prépare l'article à l'insertion en base</span>
+            <span class="token variable">$manager</span><span class="token operator">-&gt;</span><span class="token function">persist</span><span class="token punctuation">(</span><span class="token variable">$article</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// On sauvegarde effectivement tout en base</span>
+        <span class="token variable">$manager</span><span class="token operator">-&gt;</span><span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Cette méthode sert à dire au bundle quelles fixtures</span>
+    <span class="token comment">// doivent être appliquées avant celles-ci</span>
+    <span class="token keyword">public</span> <span class="token keyword">function</span> <span class="token function-definition function">getDependencies</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>
+            <span class="token class-name static-context">TagFixtures</span><span class="token operator">::</span><span class="token keyword">class</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></code></pre></div><p>Maintenant que nous avons nos jeux de (fausses) données, nous pouvons les appliquer avec la commande <code>php bin/console doctrine:fixtures:load</code>.</p> <p>Par défaut, cette commande vide la base avant d'ajouter les données. Si vous souhaitez ajouter des données à la base existante, ajouter l'option <code>--append</code> : <code>php bin/console doctrine:fixtures:load --append</code>.</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/symfony/23-injection.html" class="prev">
+        Les services et l'injection de dépendances
+      </a></span> <span class="next"><a href="/symfony/25-formulaires.html">
+        Formulaires
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.a0283a3d.js" defer></script><script src="/assets/js/2.2bb1f65b.js" defer></script><script src="/assets/js/48.867e58b9.js" defer></script>
+  </body>
+</html>
